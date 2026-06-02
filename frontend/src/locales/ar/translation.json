@@ -1,0 +1,130 @@
+{
+  "app": {
+    "name": "Chatify",
+    "tagline": "رسائل فورية",
+    "taglineRegister": "أنشئ حسابك"
+  },
+  "auth": {
+    "signIn": "تسجيل الدخول إلى حسابك",
+    "joinChatify": "انضم إلى Chatify",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "username": "اسم المستخدم",
+    "signInBtn": "تسجيل الدخول",
+    "createAccountBtn": "إنشاء حساب",
+    "noAccount": "ليس لديك حساب؟",
+    "createOne": "أنشئ واحداً",
+    "haveAccount": "لديك حساب بالفعل؟",
+    "signInLink": "تسجيل الدخول",
+    "welcomeBack": "مرحباً بعودتك!",
+    "accountCreated": "تم إنشاء الحساب! مرحباً بك في Chatify 🎉",
+    "loginFailed": "فشل تسجيل الدخول",
+    "registerFailed": "فشل التسجيل",
+    "placeholders": {
+      "email": "you@example.com",
+      "password": "••••••••",
+      "firstName": "محمد",
+      "lastName": "أحمد",
+      "username": "mohammed123",
+      "passwordHint": "8 أحرف كحد أدنى، حرف كبير، رقم"
+    },
+    "validation": {
+      "emailRequired": "البريد الإلكتروني مطلوب",
+      "emailInvalid": "بريد إلكتروني غير صالح",
+      "passwordRequired": "كلمة المرور مطلوبة",
+      "passwordMin": "6 أحرف كحد أدنى",
+      "passwordMin8": "8 أحرف كحد أدنى",
+      "passwordUppercase": "يجب أن يحتوي على حرف كبير",
+      "passwordNumber": "يجب أن يحتوي على رقم",
+      "firstNameRequired": "الاسم الأول مطلوب",
+      "lastNameRequired": "اسم العائلة مطلوب",
+      "usernameRequired": "اسم المستخدم مطلوب",
+      "usernameMin": "3 أحرف كحد أدنى"
+    }
+  },
+  "sidebar": {
+    "search": "ابحث في المحادثات...",
+    "newChat": "محادثة جديدة",
+    "newGroup": "مجموعة جديدة",
+    "logout": "تسجيل الخروج",
+    "tabs": {
+      "all": "الكل",
+      "private": "خاص",
+      "groups": "مجموعات"
+    },
+    "empty": "لا توجد محادثات",
+    "createGroup": "إنشاء مجموعة"
+  },
+  "chat": {
+    "selectChat": "اختر محادثة من الشريط الجانبي أو ابدأ محادثة جديدة",
+    "welcomeTitle": "مرحباً بك في Chatify",
+    "noMessages": "لا توجد رسائل بعد. قل مرحباً! 👋",
+    "typeMessage": "اكتب رسالة...",
+    "groupChat": "دردشة جماعية",
+    "online": "متصل",
+    "offline": "غير متصل",
+    "typing": "يكتب...",
+    "clearChat": "مسح المحادثة",
+    "groupInfo": "معلومات المجموعة",
+    "startConversation": "ابدأ محادثة"
+  },
+  "message": {
+    "edit": "تعديل",
+    "delete": "حذف",
+    "edited": "(معدّل)",
+    "deleted": "تم حذف هذه الرسالة",
+    "save": "حفظ"
+  },
+  "newChat": {
+    "title": "محادثة جديدة",
+    "searchPlaceholder": "ابحث بالاسم أو اسم المستخدم...",
+    "noUsers": "لا يوجد مستخدمون"
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "accountInfo": "معلومات الحساب",
+    "editProfile": "تعديل الملف الشخصي",
+    "saveChanges": "حفظ التغييرات",
+    "lastSeen": "آخر ظهور",
+    "updateSuccess": "تم تحديث الملف الشخصي!",
+    "updateFailed": "فشل التحديث"
+  },
+  "groups": {
+    "create": "إنشاء مجموعة",
+    "createSubtitle": "أضف أعضاء وحدد اسم المجموعة",
+    "groupName": "اسم المجموعة *",
+    "groupNamePlaceholder": "أدخل اسم المجموعة...",
+    "selectedMembers": "الأعضاء المختارون",
+    "addMembers": "إضافة أعضاء",
+    "searchUsers": "ابحث عن مستخدمين...",
+    "noUsers": "لا يوجد مستخدمون",
+    "createBtn": "إنشاء المجموعة",
+    "addMembersBtn": "إضافة أعضاء",
+    "searchPlaceholder": "ابحث عن مستخدمين...",
+    "members": "أعضاء",
+    "memberCount": "{{count}} عضو",
+    "created": "تم الإنشاء",
+    "openChat": "فتح المحادثة",
+    "groupInfo": "معلومات المجموعة",
+    "addAtLeastOne": "أضف عضواً واحداً على الأقل",
+    "createdSuccess": "تم إنشاء المجموعة \"{{name}}\"!",
+    "createFailed": "فشل إنشاء المجموعة",
+    "addMembersSuccess": "تمت إضافة الأعضاء!",
+    "addMembersFailed": "فشل إضافة الأعضاء",
+    "removeMemberConfirm": "إزالة {{name}} من المجموعة؟",
+    "removeMemberSuccess": "تم إزالة العضو",
+    "removeMemberFailed": "فشل إزالة العضو",
+    "loadFailed": "فشل تحميل المجموعة",
+    "notFound": "المجموعة غير موجودة",
+    "adding": "جارٍ الإضافة..."
+  },
+  "common": {
+    "back": "رجوع",
+    "close": "إغلاق",
+    "loading": "جارٍ التحميل...",
+    "error": "حدث خطأ ما",
+    "retry": "إعادة المحاولة"
+  }
+}

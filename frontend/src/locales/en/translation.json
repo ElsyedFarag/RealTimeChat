@@ -1,0 +1,130 @@
+{
+  "app": {
+    "name": "Chatify",
+    "tagline": "Real-time messaging",
+    "taglineRegister": "Create your account"
+  },
+  "auth": {
+    "signIn": "Sign in to your account",
+    "joinChatify": "Join Chatify",
+    "email": "Email",
+    "password": "Password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "username": "Username",
+    "signInBtn": "Sign In",
+    "createAccountBtn": "Create Account",
+    "noAccount": "Don't have an account?",
+    "createOne": "Create one",
+    "haveAccount": "Already have an account?",
+    "signInLink": "Sign in",
+    "welcomeBack": "Welcome back!",
+    "accountCreated": "Account created! Welcome to Chatify 🎉",
+    "loginFailed": "Login failed",
+    "registerFailed": "Registration failed",
+    "placeholders": {
+      "email": "you@example.com",
+      "password": "••••••••",
+      "firstName": "John",
+      "lastName": "Doe",
+      "username": "johndoe",
+      "passwordHint": "Min 8 chars, 1 uppercase, 1 number"
+    },
+    "validation": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Min 6 characters",
+      "passwordMin8": "Min 8 characters",
+      "passwordUppercase": "Must contain an uppercase letter",
+      "passwordNumber": "Must contain a number",
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "usernameRequired": "Username is required",
+      "usernameMin": "Min 3 characters"
+    }
+  },
+  "sidebar": {
+    "search": "Search conversations...",
+    "newChat": "New Chat",
+    "newGroup": "New Group",
+    "logout": "Logout",
+    "tabs": {
+      "all": "All",
+      "private": "Private",
+      "groups": "Groups"
+    },
+    "empty": "No conversations found",
+    "createGroup": "Create a group"
+  },
+  "chat": {
+    "selectChat": "Select a conversation from the sidebar or start a new one",
+    "welcomeTitle": "Welcome to Chatify",
+    "noMessages": "No messages yet. Say hi! 👋",
+    "typeMessage": "Type a message...",
+    "groupChat": "Group chat",
+    "online": "Online",
+    "offline": "Offline",
+    "typing": "typing...",
+    "clearChat": "Clear Chat",
+    "groupInfo": "Group Info",
+    "startConversation": "Start a conversation"
+  },
+  "message": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "edited": "(edited)",
+    "deleted": "This message was deleted",
+    "save": "Save"
+  },
+  "newChat": {
+    "title": "New Conversation",
+    "searchPlaceholder": "Search by name or username...",
+    "noUsers": "No users found"
+  },
+  "profile": {
+    "title": "Profile",
+    "accountInfo": "Account Info",
+    "editProfile": "Edit Profile",
+    "saveChanges": "Save Changes",
+    "lastSeen": "Last seen",
+    "updateSuccess": "Profile updated!",
+    "updateFailed": "Update failed"
+  },
+  "groups": {
+    "create": "Create Group",
+    "createSubtitle": "Add members and set a group name",
+    "groupName": "Group Name *",
+    "groupNamePlaceholder": "Enter group name...",
+    "selectedMembers": "Selected Members",
+    "addMembers": "Add Members",
+    "searchUsers": "Search users by name...",
+    "noUsers": "No users found",
+    "createBtn": "Create Group",
+    "addMembersBtn": "Add Members",
+    "searchPlaceholder": "Search users...",
+    "members": "Members",
+    "memberCount": "{{count}} members",
+    "created": "Created",
+    "openChat": "Open Chat",
+    "groupInfo": "Group Info",
+    "addAtLeastOne": "Add at least 1 member",
+    "createdSuccess": "Group \"{{name}}\" created!",
+    "createFailed": "Failed to create group",
+    "addMembersSuccess": "Members added!",
+    "addMembersFailed": "Failed to add members",
+    "removeMemberConfirm": "Remove {{name}} from the group?",
+    "removeMemberSuccess": "Member removed",
+    "removeMemberFailed": "Failed to remove member",
+    "loadFailed": "Failed to load group",
+    "notFound": "Group not found",
+    "adding": "Adding..."
+  },
+  "common": {
+    "back": "Back",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry"
+  }
+}
