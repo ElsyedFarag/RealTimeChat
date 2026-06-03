@@ -8,7 +8,6 @@ public class MessageReadConfiguration : IEntityTypeConfiguration<MessageReceipt>
 {
     public void Configure(EntityTypeBuilder<MessageReceipt> builder)
     {
-        // Composite Key
         builder.HasKey(x => new { x.MessageId, x.UserId });
 
         builder.HasOne(x => x.Message)

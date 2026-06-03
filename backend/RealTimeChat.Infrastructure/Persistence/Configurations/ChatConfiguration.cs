@@ -21,17 +21,14 @@ public class ChatConfiguration : IEntityTypeConfiguration<Chat>
             .IsRequired()
             .HasDefaultValueSql("GETUTCDATE()");
 
-        // Soft-delete columns
         builder.Property(x => x.IsDeleted)
             .IsRequired()
             .HasDefaultValue(false);
 
         builder.Property(x => x.DeletedAt);
 
-        // Global query filter — excluded from all queries automatically
         builder.HasQueryFilter(x => !x.IsDeleted);
 
-        // Relationships - Changed to Restrict to avoid cascade delete issues
         builder.HasMany(x => x.Participants)
             .WithOne(x => x.Chat)
             .HasForeignKey(x => x.ChatId)
@@ -42,7 +39,6 @@ public class ChatConfiguration : IEntityTypeConfiguration<Chat>
             .HasForeignKey(x => x.ChatId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        // Indexes
         builder.HasIndex(x => x.Type);
         builder.HasIndex(x => x.IsDeleted);
         builder.HasIndex(x => x.CreatedAt);

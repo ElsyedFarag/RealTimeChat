@@ -22,12 +22,10 @@ public class ChatMessageConfiguration : IEntityTypeConfiguration<ChatMessage>
             .IsRequired()
             .HasDefaultValueSql("GETUTCDATE()");
 
-        // Soft Delete columns
         builder.Property(x => x.IsDeleted)
             .IsRequired()
             .HasDefaultValue(false);
 
-        // Message metadata
         builder.Property(x => x.IsEdited)
             .IsRequired()
             .HasDefaultValue(false);
@@ -42,10 +40,8 @@ public class ChatMessageConfiguration : IEntityTypeConfiguration<ChatMessage>
             .HasMaxLength(20)
             .HasDefaultValue(MessageStatus.Sent);
 
-        // Global Query Filter
         builder.HasQueryFilter(x => !x.IsDeleted);
 
-        // Relationships
         builder.HasOne(x => x.Chat)
             .WithMany(x => x.Messages)
             .HasForeignKey(x => x.ChatId)
@@ -61,14 +57,12 @@ public class ChatMessageConfiguration : IEntityTypeConfiguration<ChatMessage>
             .HasForeignKey(x => x.MessageId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        // Indexes for performance
         builder.HasIndex(x => x.SenderId);
         builder.HasIndex(x => x.ChatId);
         builder.HasIndex(x => x.SentAt);
         builder.HasIndex(x => x.IsDeleted);
         builder.HasIndex(x => x.Status);
 
-        // Composite index for pagination
         builder.HasIndex(x => new { x.ChatId, x.SentAt });
     }
 }

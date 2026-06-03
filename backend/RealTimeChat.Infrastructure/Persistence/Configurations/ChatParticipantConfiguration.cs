@@ -10,7 +10,6 @@ public class ChatParticipantConfiguration : IEntityTypeConfiguration<ChatPartici
     {
         builder.ToTable("ChatParticipants");
 
-        // Composite Primary Key
         builder.HasKey(x => new { x.ChatId, x.UserId });
 
         builder.Property(x => x.JoinedAt)
@@ -21,7 +20,6 @@ public class ChatParticipantConfiguration : IEntityTypeConfiguration<ChatPartici
             .IsRequired()
             .HasDefaultValue(false);
 
-        // Relationships
         builder.HasOne(x => x.Chat)
             .WithMany(x => x.Participants)
             .HasForeignKey(x => x.ChatId)
@@ -31,8 +29,7 @@ public class ChatParticipantConfiguration : IEntityTypeConfiguration<ChatPartici
             .WithMany(x => x.ChatParticipants)
             .HasForeignKey(x => x.UserId)
             .OnDelete(DeleteBehavior.Restrict);
-
-        // Indexes
+        
         builder.HasIndex(x => x.UserId);
         builder.HasIndex(x => x.ChatId);
         builder.HasIndex(x => x.JoinedAt);

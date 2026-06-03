@@ -39,14 +39,12 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddMaps(AppDomain.CurrentDomain.GetAssemblies());
 });
 
-// ─── Repositories ──────────────────────────────────────────────────────────
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IChatRepository, ChatRepository>();
 builder.Services.AddScoped<IChatParticipantRepository, ChatParticipantRepository>();
 builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 builder.Services.AddScoped<IUserConnectionRepository, UserConnectionRepository>();
 
-// ─── Application Services ──────────────────────────────────────────────────
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IChatService, ChatService>();
@@ -55,7 +53,6 @@ builder.Services.AddScoped<IMessageService, MessageService>();
 builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 builder.Services.AddControllers();
 
-// ─── SignalR ───────────────────────────────────────────────────────────────
 builder.Services.AddSignalR(options =>
 {
     options.EnableDetailedErrors = builder.Environment.IsDevelopment();
@@ -63,26 +60,18 @@ builder.Services.AddSignalR(options =>
 
 builder.Services.AddScoped<DbInitializer>();
 
-// ─── CORS ──────────────────────────────────────────────────────────────────
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowChatClient", policy =>
     {
         policy
-            .WithOrigins(
-                "http://localhost:5173",
-                "http://127.0.0.1:5173",
-                "http://localhost:5174",
-                "http://localhost:3000",
-                "http://127.0.0.1:5500"
-            )
+            .AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
     });
 });
 
-// ─── JWT Authentication ────────────────────────────────────────────────────
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -106,7 +95,6 @@ builder.Services.AddAuthentication(options =>
                                            Encoding.UTF8.GetBytes(jwtSettings.Key))
         };
 
-        // ✅ Allow token via query-string for SignalR WebSocket connections
         options.Events = new JwtBearerEvents
         {
             OnMessageReceived = context =>
@@ -169,7 +157,6 @@ await app.InitializeDatabaseAsync();
 app.UseStaticFiles();
 app.MapControllers();
 
-// ─── SignalR Hub endpoint ──────────────────────────────────────────────────
 app.MapHub<ChatHub>("/hubs/chat");
 
 app.Run();

@@ -1,0 +1,15 @@
+# Visual Studio
+.vs/
+
+# .NET
+**/bin/
+**/obj/
+
+# React
+**/node_modules/
+**/build/
+**/dist/
+
+# Environment variables
+.env
+.env.local

@@ -29,9 +29,6 @@ public class ChatHub : Hub
         _userManager = userManager;
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    // CONNECTION LIFECYCLE
-    // ─────────────────────────────────────────────────────────────────────────
 
     public override async Task OnConnectedAsync()
     {
@@ -40,7 +37,6 @@ public class ChatHub : Hub
 
         if (user is not null)
         {
-            // Track connection
             await _connectionRepository.AddAsync(new UserConnection
             {
                 UserId = userId,
@@ -49,16 +45,13 @@ public class ChatHub : Hub
             });
             await _connectionRepository.SaveChangesAsync();
 
-            // Mark user as online
             user.IsOnline = true;
             await _userManager.UpdateAsync(user);
 
-            // Join all chat rooms this user belongs to
             var chats = await _chatRepository.GetUserChatsOptimizedAsync(userId);
             foreach (var chat in chats)
                 await Groups.AddToGroupAsync(Context.ConnectionId, chat.Id.ToString());
 
-            // Notify others that this user is now online
             await Clients.Others.SendAsync(HubEvents.UserOnline, new
             {
                 UserId = userId,
@@ -79,7 +72,6 @@ public class ChatHub : Hub
 
         var remainingConnections = await _connectionRepository.GetConnectionCountAsync(userId);
 
-        // Only mark offline when ALL tabs/devices are disconnected
         if (remainingConnections == 0)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -100,9 +92,6 @@ public class ChatHub : Hub
         await base.OnDisconnectedAsync(exception);
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    // MESSAGING
-    // ─────────────────────────────────────────────────────────────────────────
     public async Task SendMessage(SendMessageDto dto)
     {
         var senderId = GetUserId();
@@ -111,12 +100,10 @@ public class ChatHub : Hub
         {
             var message = await _messageService.SendMessageAsync(senderId, dto);
 
-            // Broadcast to everyone in the chat group (including sender)
             await Clients
                 .Group(dto.ChatId.ToString())
                 .SendAsync(HubEvents.ReceiveMessage, message);
 
-            // Update status to Delivered for all online members
             await NotifyDeliveredAsync(dto.ChatId, message.Id);
         }
         catch (UnauthorizedAccessException ex)
@@ -205,13 +192,11 @@ public class ChatHub : Hub
     }
 
 
-    /// <summary>Client calls this while the user is typing.</summary>
     public async Task StartTyping(Guid chatId)
     {
         var userId = GetUserId();
         var user = await _userManager.FindByIdAsync(userId);
 
-        // Broadcast to everyone in the chat EXCEPT the typer
         await Clients
             .GroupExcept(chatId.ToString(), Context.ConnectionId)
             .SendAsync(HubEvents.UserTyping, new
@@ -222,7 +207,6 @@ public class ChatHub : Hub
             });
     }
 
-    /// <summary>Client calls this when the user stops typing.</summary>
     public async Task StopTyping(Guid chatId)
     {
         var userId = GetUserId();
@@ -236,9 +220,6 @@ public class ChatHub : Hub
             });
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    // CHAT ROOM MANAGEMENT
-    // ─────────────────────────────────────────────────────────────────────────
 
     public async Task JoinChat(Guid chatId)
     {
@@ -255,7 +236,6 @@ public class ChatHub : Hub
         await Clients.Caller.SendAsync(HubEvents.JoinedChat, chatId);
     }
 
-    /// <summary>Leave a chat group (e.g. user was removed from a group chat).</summary>
     public async Task LeaveChat(Guid chatId)
     {
         await Groups.RemoveFromGroupAsync(Context.ConnectionId, chatId.ToString());
@@ -267,22 +247,18 @@ public class ChatHub : Hub
     {
         foreach (var memberId in memberIds)
         {
-            // Notify each member's active connections
             await Clients.User(memberId).SendAsync(HubEvents.GroupCreated, chatSummary);
         }
 
-        // Add every current connection to the new group
         await Groups.AddToGroupAsync(Context.ConnectionId, chatId.ToString());
     }
 
     public async Task NotifyMemberAdded(Guid chatId, string newUserId, object memberDto)
     {
-        // Tell everyone already in the group
         await Clients
             .Group(chatId.ToString())
             .SendAsync(HubEvents.MemberAdded, new { ChatId = chatId, Member = memberDto });
 
-        // Pull new member's connections into the SignalR group
         await Clients.User(newUserId).SendAsync(HubEvents.GroupCreated, new { Id = chatId });
     }
 
@@ -292,9 +268,6 @@ public class ChatHub : Hub
             .Group(chatId.ToString())
             .SendAsync(HubEvents.MemberRemoved, new { ChatId = chatId, UserId = removedUserId });
     }
-    // ─────────────────────────────────────────────────────────────────────────
-    // HELPERS
-    // ─────────────────────────────────────────────────────────────────────────
 
     private async Task NotifyDeliveredAsync(Guid chatId, Guid messageId)
     {

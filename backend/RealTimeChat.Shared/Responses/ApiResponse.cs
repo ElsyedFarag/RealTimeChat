@@ -20,7 +20,6 @@ public class ApiResponse<T>
         Errors = errors;
     }
 
-    // ================= SUCCESS =================
 
     public static ApiResponse<T> Ok(
         T data,
@@ -30,8 +29,6 @@ public class ApiResponse<T>
     public static ApiResponse<T> Ok(
         string message = "Operation successful")
         => new(true, message);
-
-    // ================= FAIL =================
 
     public static ApiResponse<T> Fail(
         string message = "Operation failed",
