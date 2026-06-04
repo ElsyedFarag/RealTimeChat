@@ -140,6 +140,8 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
+app.UseHttpsRedirection();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwaggerUI();
@@ -155,7 +157,6 @@ await app.InitializeDatabaseAsync();
 
 app.UseStaticFiles();
 app.MapControllers();
-
 app.MapHub<ChatHub>("/hubs/chat");
 
 app.Run();
