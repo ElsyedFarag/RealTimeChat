@@ -64,10 +64,13 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowChatClient", policy =>
     {
-        policy
-            .AllowAnyOrigin()
-            .AllowAnyHeader()
-            .AllowAnyMethod();
+        policy.WithOrigins(
+                "https://real-time-chat-rose-iota.vercel.app",
+                "https://real-time-chat-git-main-realtime-chat.vercel.app"
+              )
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
     });
 });
 
